@@ -4,6 +4,9 @@ class Program
 {
     static void Main(string[] args)
     {
+        // Random Item Loop (10 rolls)
+         for (int i = 0; i < 10; i++)
+        {
         // Initialize RNG
         Random dice = new Random();
         
@@ -11,7 +14,7 @@ class Program
         double roll = dice.NextDouble() * 100;
         
         // Apply a luck modifier to the roll
-        double luck = -10.5;
+        double luck = 0; // Change this value to test different luck levels (-100,100) Negative numbers make rarer items more common & vice versa
         luck = luck / 100;
         roll += roll * luck;
 
@@ -78,8 +81,11 @@ class Program
         var rarityColor = rarityColors.FirstOrDefault(rc => rc.Rarity == rarity).Color;
 
         // Set the console text color and print the result
-        Console.ForegroundColor = rarityColor;
-        Console.WriteLine($"You Rolled A: {rarity} {weapon} at a {roll}% chance!");
-        Console.ResetColor();
+       
+            Console.ForegroundColor = rarityColor;
+            Console.WriteLine($"You Rolled A: {rarity} {weapon} at a {roll}% chance!");
+            Console.ResetColor();
+        }
+        
     }
 }
