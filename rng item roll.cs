@@ -13,12 +13,12 @@ class Program
             luck = luck / 100;
         Console.ForegroundColor = ConsoleColor.DarkYellow;
         string chesttext = "You found a chest!\n";
-        WriteTextWithDelay(chesttext, 25);
+        WriteTextWithDelay(chesttext, 5);
 
         System.Threading.Thread.Sleep(300);
         Console.ForegroundColor = ConsoleColor.Cyan;
         string entertoopen = "Press Enter to open the chest.\n";
-        WriteTextWithDelay(entertoopen, 25);
+        WriteTextWithDelay(entertoopen, 5);
 
         while (Console.ReadKey().Key != ConsoleKey.Enter) { }
         
@@ -31,11 +31,11 @@ class Program
         totaldrops = Math.Clamp(totaldrops, 1, maxdrops);
         Console.ForegroundColor = ConsoleColor.Red;
     
-        WriteTextWithDelay($"Your current luck modifier is {Math.Abs(luck)*100}%\n", 25);
+        WriteTextWithDelay($"Your current luck modifier is {Math.Abs(luck)*100}%\n", 5);
         
 
         string itemsgot = "You Found " + totaldrops + " drops!\n\n";
-        WriteTextWithDelay(itemsgot, 25);
+        WriteTextWithDelay(itemsgot, 5);
         Console.ResetColor();
 
         // Random Item Loop (totaldrops)
@@ -53,7 +53,7 @@ class Program
 
             // Round the roll to one decimal place and clamp it between 0.01 and 99.9
             roll = Math.Round(roll, 1);
-            roll = Math.Clamp(roll, 0.01, 99.9);
+            roll = Math.Clamp(roll, 0.01, 99.99);
 
             // Initialize rarity and weapon variables
             string rarity = "???";
@@ -181,14 +181,14 @@ class Program
                 "of the Gorgon", "of the Harpy", "of the Manticore", "of the Pegasus", "of the Sphinx", "of the Wyvern"
             };
             // Determine if a modifier should be added, and make sure it isn't gold
-            if (!weapon.Contains("Gold") && !weapon.Contains("Silver") && dice.NextDouble() <= 0.20)
-            {
-                string modifier = modifiers[dice.Next(0, modifiers.Count)];
-                weapon += " " + modifier;
-            }
+            // if (!weapon.Contains("Coin") && !weapon.Contains("Gold") && !weapon.Contains("Silver") && dice.NextDouble() <= 0.2)
+            // {
+            //     string modifier = modifiers[dice.Next(0, modifiers.Count)];
+            //     weapon += " " + modifier;
+            // }
 
             // Determine if a second modifier should be added, and make sure it isn't gold
-            if (!weapon.Contains("Gold") && !weapon.Contains("Silver") && dice.NextDouble() <= 0.2)
+            if (!weapon.Contains("Coins") && !weapon.Contains("Gold") && !weapon.Contains("Silver") && !weapon.Contains("Pieces") && dice.NextDouble() <= 0.2)
             {
                 string firstModifier = modifiers[dice.Next(0, modifiers.Count)];
                 weapon += " " + firstModifier;
@@ -222,8 +222,12 @@ class Program
             Console.ResetColor();
         }
 
-        WriteTextWithDelay("\nPress any key to exit...\n", 25);
-        Console.ReadKey();
+        WriteTextWithDelay("\nPress any key to exit or Enter to restart...\n", 5);
+        if (Console.ReadKey().Key == ConsoleKey.Enter)
+        {
+            Console.Clear();
+            Main(args);
+        }
     }
 
     static void WriteTextWithDelay(string text, int delay)
