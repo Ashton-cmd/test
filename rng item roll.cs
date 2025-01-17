@@ -1,7 +1,6 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.VisualBasic;
+
+
 
 class Program
 {
@@ -188,7 +187,7 @@ class Program
             // }
 
             // Determine if a second modifier should be added, and make sure it isn't gold
-            if (!weapon.Contains("Coins") && !weapon.Contains("Gold") && !weapon.Contains("Silver") && !weapon.Contains("Pieces") && dice.NextDouble() <= 0.2)
+            if (!weapon.Contains("Coins") && !weapon.Contains("Gold") && !weapon.Contains("Silver") && !weapon.Contains("Bits") && !weapon.Contains("Pouch") && !weapon.Contains("Pieces") && dice.NextDouble() <= 0.2)
             {
                 string firstModifier = modifiers[dice.Next(0, modifiers.Count)];
                 weapon += " " + firstModifier;
