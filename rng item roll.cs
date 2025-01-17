@@ -50,8 +50,8 @@ class Program
             
             roll += roll * luck;
 
-            // Round the roll to one decimal place and clamp it between 0.01 and 99.9
-            roll = Math.Round(roll, 1);
+            // Round the roll to two decimal places and clamp it between 0.01 and 99.99
+            roll = Math.Round(roll, 2);
             roll = Math.Clamp(roll, 0.01, 99.99);
 
             // Initialize rarity and weapon variables
@@ -67,7 +67,10 @@ class Program
             "Ethereal Armor", "Stellar Bow", "Elixir of Life", "Orb of Wisdom", "Crown of Glory", "Wings of Freedom",
             "Ring of Power", "Amulet of Eternity", "Blade of Phoenix", "Draconic Shield", "Titan Armor",
             "Eagle Bow", "Potion of Divinity", "Eternal Orb", "Ancient Crown", "Phoenix Wings",
-            "Titan Ring", "Godly Amulet"
+            "Titan Ring", "Godly Amulet", "Celestial Blade", "Radiant Shield", "Ascendant Armor",
+            "Cosmic Bow", "Soulstone", "Infinity Elixir", "Void Crown", "Lightforge Blade", "Divinity Mantle",
+            "Seraphim Wings", "Infinity Orb", "Sacred Ring", "Primordial Amulet", "Arcane Scales",
+            "Twilight Bow", "Solar Plate", "Astral Shield", "Aetherial Helm", "Starfall Cloak"
         };
 
         List<string> LegendaryNames = new List<string>
@@ -78,7 +81,9 @@ class Program
             "Phoenix Guard", "Dragonplate", "Bow of Titans", "Potion of Power", "Gem of Wisdom",
             "Eagle Cloak", "Lion's Boots", "Bearclaw Gauntlets", "Wolf's Helm", "Dragonfang Blade",
             "Eagle Shield", "Bearhide Armor", "Wolfbow", "Potion of Strength", "Gem of Power",
-            "Bearskin Cloak", "Wolfsbane Boots", "Eagle Gauntlets", "Bear King's Helm"
+            "Bearskin Cloak", "Wolfsbane Boots", "Eagle Gauntlets", "Bear King's Helm", "Firebrand Sword",
+            "Stormchaser Bow", "Radiant Plate", "Infernal Gauntlets", "Blazeward Shield", "Shadowstep Cloak",
+            "Duskstone Amulet", "Ironhide Helm", "Sunflare Saber", "Starlight Greaves", "Abyssal Staff"
         };
 
         List<string> EpicNames = new List<string>
@@ -89,8 +94,9 @@ class Program
             "Guardian Shield", "Sorcerer's Plate", "Lunar Bow", "Potion of Agility", "Wisdom Crystal",
             "Starlight Mantle", "Greaves of Guardians", "Enchanted Bracers", "Moonlit Circlet",
             "Guardian Blade", "Mage's Shield", "Moonwoven Armor", "Astral Bow", "Potion of Wisdom",
-            "Guardian's Crystal", "Mystic Mantle", "Moonlit Greaves", "Stellar Bracers",
-            "Visionary Circlet"
+            "Guardian's Crystal", "Mystic Mantle", "Moonlit Greaves", "Stellar Bracers", "Visionary Circlet",
+            "Frostfang Dagger", "Starweave Cloak", "Runic Helm", "Eclipse Blade", "Seeker's Orb", "Shadowscale Gauntlets",
+            "Flameshadow Armor", "Lunar Crest", "Fangwoven Belt", "Vortex Saber"
         };
 
         List<string> RareNames = new List<string>
@@ -101,8 +107,9 @@ class Program
             "Sentinel Shield", "Noble's Armor", "Tracker Bow", "Vitality Potion", "Sage Stone",
             "Protector Cape", "Champion's Sandals", "Ranger's Gloves", "Seeker Crown",
             "Knight's Sword", "Hunter's Shield", "Defender's Plate", "Champion Bow", "Wisdom Potion",
-            "Runestone", "Noble Cape", "Pathfinder Sandals", "Guardian Gloves",
-            "Warrior's Crown"
+            "Runestone", "Noble Cape", "Pathfinder Sandals", "Guardian Gloves", "Warrior's Crown",
+            "Ironheart Plate", "Spire Bow", "Furyguard Cloak", "Berserker's Gauntlets", "Shadowstep Boots",
+            "Warden Shield", "Crystalbane Sword", "Lionhelm", "Frostedge Blade", "Windsinger Flute"
         };
 
         List<string> UncommonNames = new List<string>
@@ -112,8 +119,9 @@ class Program
             "Shadowcloak", "Wanderer's Boots", "Skill Gauntlets", "Scout's Helm", "Iron Blade",
             "Steel Shield", "Soldier's Plate", "Marksman's Bow", "Healing Herb", "Silver Shards",
             "Bronze Saber", "Iron Guard", "Plate of Resolve", "Hawkeye Bow", "Healer's Tonic",
-            "Lifebloom Herb", "Pathfinder Cloak", "Traveler's Boots", "Warden's Gauntlets",
-            "Adventurer's Helm", "Iron Saber", "Guardian Shield", "Forgemaster's Plate", "Hunter's Bow"
+            "Lifebloom Herb", "Pathfinder Cloak", "Traveler's Boots", "Warden's Gauntlets", "Adventurer's Helm",
+            "Iron Saber", "Guardian Shield", "Forgemaster's Plate", "Hunter's Bow", "Sentry Sword",
+            "Archer's Cloak", "Wayfinder Amulet", "Timber Helm", "Ranger's Blade", "Steel Vanguard"
         };
 
         List<string> CommonNames = new List<string>
@@ -125,8 +133,10 @@ class Program
             "Wooden Club", "Leather Cap", "Villager's Shirt", "Hunting Knife", "Carrot Bunch", "Silver Piece",
             "Rusty Blade", "Cracked Shield", "Simple Tunic", "Traveler's Spear", "Boiled Potato", "Tin Coins",
             "Stone Hammer", "Splintered Helm", "Fieldworker's Hat", "Sling", "Milk Jar", "Copper Bits",
-            "Tree Branch", "Torn Hat", "Rough Gloves", "Jagged Rock", "Glass Bottle", "Brass Trinket"
+            "Tree Branch", "Torn Hat", "Rough Gloves", "Jagged Rock", "Glass Bottle", "Brass Trinket",
+            "Farm Hoe", "Rusty Nail", "Rope Belt", "Flint Knife", "Wooden Mallet"
         };
+
 
             // Define rarity colors
             List<(string Rarity, ConsoleColor Color)> rarityColors = new List<(string, ConsoleColor)>
@@ -170,15 +180,19 @@ class Program
                     rarity = "How did you even roll this?";
                     break;
             }
-            List<string> modifiers = new List<string>
-            {
-                "of Swiftness", "of Strength", "of Agility", "of Wisdom", "of Fortitude", "of Power",
-                "of the Phoenix", "of the Dragon", "of the Great Dragon", "of the Titan", "of the Eagle", "of the Bear", "of the Wolf",
-                "of the Lion", "of the Tiger", "of the Serpent", "of the Hawk", "of the Panther", "of the Leopard",
-                "of the Fox", "of the Raven", "of the Owl", "of the Griffin", "of the Unicorn", "of the Hydra",
-                "of the Kraken", "of the Minotaur", "of the Centaur", "of the Basilisk", "of the Chimera", "of the Cyclops",
-                "of the Gorgon", "of the Harpy", "of the Manticore", "of the Pegasus", "of the Sphinx", "of the Wyvern"
-            };
+        List<string> modifiers = new List<string>
+        {
+            "of Swiftness", "of Strength", "of Agility", "of Wisdom", "of Fortitude", "of Power",
+            "of the Phoenix", "of the Dragon", "of the Great Dragon", "of the Titan", "of the Eagle", "of the Elder Eagle", "of the Bear", "of the Wolf", "of the Dire Wolf",
+            "of the Lion", "of the Tiger", "of the Serpent", "of the Hawk", "of the Elder Hawk", "of the Panther", "of the Leopard",
+            "of the Fox", "of the Raven", "of the Owl", "of the Elder Owl", "of the Griffin", "of the Unicorn", "of the Hydra",
+            "of the Kraken", "of the Minotaur", "of the Centaur", "of the Basilisk", "of the Chimera", "of the Cyclops",
+            "of the Gorgon", "of the Harpy", "of the Manticore", "of the Pegasus", "of the Sphinx", "of the Wyvern",
+            "of Frost", "of Godly Might", "of Flame", "of Shadows", "of Light", "of the Abyss", "of Storms", "of Acidic Rain", "of Earth", "of Lightning", 
+            "of Thunder", "of Ice", "of Fire", "of Poison", "of Venom", "of Darkness", "of Radiance", "of Eternity", "of the Night", "of the Dusk", "of the Dawn", "of the Star", "of the Moon", "of the Sun", 
+            "of the Cosmos", "of the Tempest" 
+        };
+
             // Determine if a modifier should be added, and make sure it isn't gold
             // if (!weapon.Contains("Coin") && !weapon.Contains("Gold") && !weapon.Contains("Silver") && dice.NextDouble() <= 0.2)
             // {
@@ -186,9 +200,10 @@ class Program
             //     weapon += " " + modifier;
             // }
 
-            // Determine if a second modifier should be added, and make sure it isn't gold
-            if (!weapon.Contains("Coins") && !weapon.Contains("Gold") && !weapon.Contains("Silver") && !weapon.Contains("Bits") && !weapon.Contains("Pouch") && !weapon.Contains("Pieces") && dice.NextDouble() <= 0.2)
+            // Determine if a modifier should be added, and make sure it isn't a currrency
+            if (!weapon.Contains("Coin") && !weapon.Contains("Gold") && !weapon.Contains("Silver") && !weapon.Contains("Shards") && !weapon.Contains("Bit") && !weapon.Contains("Pouch") && !weapon.Contains("Piece") && dice.NextDouble() <= 0.2)
             {
+                roll = Math.Round(((roll*0.01) * 0.2) * 100, 2);
                 string firstModifier = modifiers[dice.Next(0, modifiers.Count)];
                 weapon += " " + firstModifier;
 
@@ -196,6 +211,7 @@ class Program
                 if (dice.NextDouble() <= 0.2)
                 {
                     string secondModifier;
+                    roll = Math.Round(((roll*0.01) * 0.2) * 100, 2);
                     do
                     {
                         secondModifier = modifiers[dice.Next(0, modifiers.Count)];
@@ -217,12 +233,12 @@ class Program
 
             // Set the console text color and print the result
            Console.ForegroundColor = rarityColor;
-            WriteTextWithDelay($"You Rolled A: [{rarity}] {weapon} at a {roll}% chance!\n", 1);
+            WriteTextWithDelay($"You Rolled A: [{rarity}] {weapon} at a {roll}% chance!", 1);
             Console.ResetColor();
         }
 
         WriteTextWithDelay("\nPress any key to exit or Enter to restart...\n", 5);
-        if (Console.ReadKey().Key == ConsoleKey.Enter)
+        if (Console.ReadKey().Key == ConsoleKey.Enter )
         {
             Console.Clear();
             Main(args);
@@ -236,5 +252,20 @@ class Program
             Console.Write(text[i]);
             System.Threading.Thread.Sleep(delay);
         }
+      if (text.Contains("Mythic"))
+      {
+        Console.ForegroundColor = ConsoleColor.White;
+        Console.Write("\t< Mythic Item Found! >\n");
+      }
+      else if (text.Contains("Legendary"))
+            {
+                 Console.ForegroundColor = ConsoleColor.White;
+                Console.Write("\t< Legendary Item Found! >\n");  
+            }
+      else
+        {
+            Console.Write("\n");
+        }
+        Console.ResetColor();
     }
 }
